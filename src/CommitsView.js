@@ -3,13 +3,29 @@ import HeaderComponent from "./HeaderComponent";
 import GetTableView from "./CommitsTable";
 import {connect} from "react-redux";
 import * as actions from "./reducers/displayReducer";
+import {Table, Spin} from "antd";
 
 class CommitsView extends Component{
 
     state={
         commitData: [],
         dataKeys: ["name", "email", "date"],
-        columns: ["name", "email", "date"]
+        columns: [ {
+            title: 'Name',
+            dataIndex: 'name',
+            key: 'name',
+            sorter: (a, b) => { return a.name.localeCompare(b.name)}
+        }, {
+            title: 'Email',
+            dataIndex: 'email',
+            key: 'email',
+            sorter: (a, b) => { return a.name.localeCompare(b.name)}
+        }, {
+            title: 'Date',
+            dataIndex: 'date',
+            key: 'date'
+        }],
+        loading: false
     };
 
     componentWillMount(){
@@ -18,18 +34,21 @@ class CommitsView extends Component{
 
     fetchCommitInfo = () => {
         const {orgname, repoSelected} = this.props;
+        this.setState({loading: true});
         fetch(`https://api.github.com/repos/${orgname}/${repoSelected}/commits`)
             .then(res => res.json())
             .then((response) => {
                 if(response.message === "Not Found"){
                     this.setState({
                         commitData: [],
-                        noinfo: true
+                        noinfo: true,
+                        loading: false
                     })
                 }
                 else {
-                    let processedResponse = response.map((value) =>{
+                    let processedResponse = response.map((value,  index) =>{
                         return {
+                            key: index,
                             name: value.commit.committer.name,
                             email: value.commit.committer.email,
                             date: value.commit.committer.date,
@@ -37,14 +56,16 @@ class CommitsView extends Component{
                     });
                     this.setState({
                         commitData: processedResponse,
-                        noinfo: false
+                        noinfo: false,
+                        loading: false
                     })
                 }
             })
             .catch(() =>{
                 this.setState({
                     commitData: [],
-                    noinfo: true
+                    noinfo: true,
+                    loading: false
                 })
             })
     };
@@ -57,7 +78,8 @@ class CommitsView extends Component{
                     <div onClick={ () => this.props.changeViewComponent("repo", "")}> Repositories</div>
                     <div> Commits</div>
                 </div>
-                <GetTableView columns={columns} data={commitData} dataKeys={dataKeys}/>
+                {this.state.loading? <Spin />:
+                    <Table columns={columns} dataSource={commitData}/>}
             </div>
         )
     }

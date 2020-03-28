@@ -9,6 +9,7 @@ import Display from "./Display";
 import {displayred} from "./reducers/displayReducer";
 import RepoView from "./RepoView";
 import View from "./View";
+import "./css/App.css";
 
 const store = createStore(displayred);
 
