@@ -1,0 +1,9 @@
+.empty-state{
+    padding-left: 20%;
+}
+.empty-state img{
+    width: 500px;
+}
+.empty-state-text{
+    font-size: 18px;
+}

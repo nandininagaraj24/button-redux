@@ -1,11 +1,12 @@
 import React from "react";
-import "./css/RepoView.css";
+import github from "./images/github-mark.png";
+import "./css/EmptyState.css";
 
 const EmptyState = () => {
     return (
-        <div>
-            <i className="fab fa-github"/>
-            <div>Search the name of an organization to view repositories and commits</div>
+        <div className="empty-state">
+            <img src={github} alt="Logo" height="350" width="500"/>
+            <div className="empty-state-text">Enter the name of an organization to view repositories and commits on GitHub</div>
         </div>
     )
 };

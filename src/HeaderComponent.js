@@ -7,7 +7,7 @@ import {debounce} from "lodash";
 class HeaderComponent extends Component {
     handleChange = (e) => {
         console.log(e)
-       /* _.debounce((e) => {
+        /*_.debounce((e) => {
             this.props.setInputVal(e.target.value)
         }, 1000);*/
         this.props.setInputVal(e.target.value)
@@ -16,8 +16,7 @@ class HeaderComponent extends Component {
         return(
             <div className="search">
                 <span className="fa fa-search"/>
-                <input className="header-input" defaultValue={this.props.orgname} onChange={this.handleChange}
-                       placeholder="Search Organization"/>
+                <input className="header-input" defaultValue={this.props.orgname} onChange={this.handleChange}/>
             </div>
         )
     }
