@@ -20,11 +20,27 @@ export const changeViewComponent = (component, repoSelected) => {
     }
 }
 
+export const setOrderCategory = (orderCategory) => {
+    return {
+        type: "SET_ORDER_CATEGORY",
+        orderCategory
+    }
+}
+
+export const setSortDirection = (sortDirection) => {
+    return {
+        type: "SET_SORT_DIRECTION",
+        sortDirection
+    }
+}
+
 const initialState = {
 	displayval: "",
     orgname: '',
     component: "repo",
-	repoSelected: ""
+	repoSelected: "",
+    orderCategory: "name",
+    sortDirection: "asc"
 }
 
 export const displayred = (state = initialState, action) => {
@@ -41,6 +57,14 @@ export const displayred = (state = initialState, action) => {
             ...state,
             component: action.component,
             repoSelected: action.repoSelected
+        }
+        case "SET_ORDER_CATEGORY": return {
+            ...state,
+            orderCategory: action.orderCategory
+        }
+        case "SET_SORT_DIRECTION": return {
+            ...state,
+            sortDirection: action.sortDirection
         }
 		default: break;
 	}

@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import * as actions from "./reducers/displayReducer";
 import {Table, Spin} from "antd";
 import "./css/CommitsView.css";
+import commits from "./mockData/commits";
 
 class CommitsView extends Component{
 
@@ -14,13 +15,11 @@ class CommitsView extends Component{
         columns: [ {
             title: 'Name',
             dataIndex: 'name',
-            key: 'name',
-            sorter: (a, b) => { return a.name.localeCompare(b.name)}
+            key: 'name'
         }, {
             title: 'Email',
             dataIndex: 'email',
-            key: 'email',
-            sorter: (a, b) => { return a.name.localeCompare(b.name)}
+            key: 'email'
         }, {
             title: 'Date',
             dataIndex: 'date',
@@ -35,6 +34,11 @@ class CommitsView extends Component{
 
     fetchCommitInfo = () => {
         const {orgname, repoSelected} = this.props;
+        /*this.setState({
+            commitData: commits,
+            noinfo: false,
+            loading: false
+        })*/
         this.setState({loading: true});
         fetch(`https://api.github.com/repos/${orgname}/${repoSelected}/commits`)
             .then(res => res.json())

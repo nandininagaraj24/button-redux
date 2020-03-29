@@ -3,20 +3,47 @@ import {connect} from "react-redux";
 //import {setOrgName} from "../reducers/org";
 import * as actions from "./reducers/displayReducer";
 import {debounce} from "lodash";
+import "./css/RepoView.css";
+import '@fortawesome/fontawesome-free/js/fontawesome'
+import '@fortawesome/fontawesome-free/js/solid'
+import '@fortawesome/fontawesome-free/js/regular'
+import '@fortawesome/fontawesome-free/js/brands';
 
 class HeaderComponent extends Component {
-    handleChange = (e) => {
-        console.log(e)
-        /*_.debounce((e) => {
-            this.props.setInputVal(e.target.value)
-        }, 1000);*/
-        this.props.setInputVal(e.target.value)
+
+    setSearchTerm = debounce(searchTerm => {
+        this.props.setInputVal(searchTerm)
+    }, 1000);
+
+    setCategory = (e) => {
+        console.log(e.target.value)
+        this.props.setOrderCategory(e.target.value)
     }
+
+    setDirection = (e) => {
+        //const direction = e.target.getAttribute("name");
+        this.props.setSortDirection(e.target.value);
+    }
+
     render(){
         return(
             <div className="search">
                 <span className="fa fa-search"/>
-                <input className="header-input" defaultValue={this.props.orgname} onChange={this.handleChange}/>
+                <input className="header-input" defaultValue={this.props.orgname}  onChange={e => {this.setSearchTerm(e.target.value)}}/>
+                <div className="table-controls">
+                    <div>View By</div>
+                <select onChange={this.setCategory}>
+                    <option value="name">Name</option>
+                    <option value="forks">Forks</option>
+                    <option value="language">Language</option>
+                    <option value="openissues">Open Issues</option>
+                    <option value="updatedat">Updated At</option>
+                </select>
+                <select onChange={this.setDirection}>
+                    <option value="asc">Ascending</option>
+                    <option value="desc">Descending</option>
+                </select>
+                </div>
             </div>
         )
     }
