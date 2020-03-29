@@ -14,9 +14,11 @@ class HeaderComponent extends Component {
     }
     render(){
         return(
-            <Fragment>
-                <input  defaultValue={this.props.orgname} onChange={this.handleChange} />
-            </Fragment>
+            <div className="search">
+                <span className="fa fa-search"/>
+                <input className="header-input" defaultValue={this.props.orgname} onChange={this.handleChange}
+                       placeholder="Search Organization"/>
+            </div>
         )
     }
 }

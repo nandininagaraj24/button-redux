@@ -1,0 +1,14 @@
+.view-navigator{
+    color: darkgray;
+    cursor: pointer;
+    padding: 0px 0px 30px 0px;
+}
+.view-navigator .active{
+    color: #1890ff;
+}
+.view-navigator > div {
+    padding-right: 10px;
+}
+.commits-view{
+    padding: 30px;
+}

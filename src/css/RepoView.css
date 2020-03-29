@@ -1,0 +1,33 @@
+@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css");
+
+.repo-view{
+    padding: 30px;
+}
+
+.header-controls{
+    padding: 0px 0px 20px 0px;
+}
+
+.search {
+    position: relative;
+    color: #aaa;
+    font-size: 16px;
+    padding: 0px 0px 30px 0px;
+}
+
+.search input {
+    width: 250px;
+    height: 32px;
+
+    background: #fcfcfc;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    box-shadow: 0 0 3px #ccc, 0 10px 15px #ebebeb inset;
+}
+
+.search input { text-indent: 32px;}
+.search .fa-search {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}

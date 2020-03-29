@@ -146,7 +146,7 @@ class TableView extends Component{
         const {tableData, columns} = this.state;
         const {orgname} = this.props;
         return(
-            <div onClick={this.tableClick}>
+            <div className="repo-table" onClick={this.tableClick}>
                 {orgname.length !== 0? this.state.loading? <Spin />:
                 <Table columns={columns} dataSource={tableData} onChange={this.handleChange}/>: null}
                 {orgname.length === 0? <p>Pick an organization to view more details</p>:null}

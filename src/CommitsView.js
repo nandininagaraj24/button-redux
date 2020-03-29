@@ -4,6 +4,7 @@ import GetTableView from "./CommitsTable";
 import {connect} from "react-redux";
 import * as actions from "./reducers/displayReducer";
 import {Table, Spin} from "antd";
+import "./css/CommitsView.css";
 
 class CommitsView extends Component{
 
@@ -72,11 +73,13 @@ class CommitsView extends Component{
 
     render() {
         const {columns, dataKeys, commitData} = this.state;
+        const {repoSelected} = this.props;
         return(
-            <div>
-                <div style={{display: "flex"}}>
-                    <div onClick={ () => this.props.changeViewComponent("repo", "")}> Repositories</div>
-                    <div> Commits</div>
+            <div className="commits-view">
+                <div className="view-navigator" style={{display: "flex"}}>
+                    <div className="active" onClick={ () => this.props.changeViewComponent("repo", "")}>Back to Repositories</div>
+                    <div> > </div>
+                    <div>Commits for {repoSelected}</div>
                 </div>
                 {this.state.loading? <Spin />:
                     <Table columns={columns} dataSource={commitData}/>}
