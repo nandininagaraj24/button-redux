@@ -1,5 +1,5 @@
 import React from 'react';
-import EmptyState from '../EmptyState';
+import EmptyState from '../components/EmptyState';
 import toJson from 'enzyme-to-json';
 
 test('CheckboxWithLabel changes the text after click', () => {

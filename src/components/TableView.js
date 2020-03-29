@@ -1,9 +1,9 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import EmptyState from "./EmptyState";
-import * as actions from "./reducers/displayReducer";
+import * as actions from "../reducers/displayReducer";
 import {Spin} from "antd";
-import "./css/RepoTable.css";
+import "../css/RepoTable.css";
 import RepoTable from "./RepoTable";
 import GetTableControls from "./RepoTableControls";
 

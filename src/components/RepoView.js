@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import HeaderComponent from "./HeaderComponent";
 import TableView from "./TableView";
 import {connect} from "react-redux";
-import "./css/RepoView.css";
+import "../css/RepoView.css";
 
 class RepoView extends Component{
 

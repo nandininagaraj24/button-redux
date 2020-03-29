@@ -1,9 +1,9 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import * as actions from "./reducers/displayReducer";
+import * as actions from "../reducers/displayReducer";
 import {Table, Spin} from "antd";
-import "./css/CommitsView.css";
-import {formatDateAndTime} from "./helpers/utils";
+import "../css/CommitsView.css";
+import {formatDateAndTime} from "../helpers/utils";
 
 class CommitsView extends Component{
 

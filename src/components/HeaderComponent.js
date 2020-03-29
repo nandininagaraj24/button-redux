@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import {connect} from "react-redux";
-import * as actions from "./reducers/displayReducer";
+import * as actions from "../reducers/displayReducer";
 import {debounce} from "lodash";
-import "./css/RepoView.css";
+import "../css/RepoView.css";
 import '@fortawesome/fontawesome-free/js/fontawesome'
 import '@fortawesome/fontawesome-free/js/solid'
 import '@fortawesome/fontawesome-free/js/regular'
