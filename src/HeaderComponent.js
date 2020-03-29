@@ -19,7 +19,7 @@ class HeaderComponent extends Component {
         return(
             <div className="search">
                 <span className="fa fa-search"/>
-                <input className="header-input" defaultValue={this.props.orgname}  onChange={e => {this.setSearchTerm(e.target.value)}}/>
+                <input className="header-input" placeholder="Search Organization Name" defaultValue={this.props.orgname}  onChange={e => {this.setSearchTerm(e.target.value)}}/>
             </div>
         )
     }
