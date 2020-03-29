@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import {connect} from "react-redux";
-import * as actions from "../reducers/displayReducer";
+import * as actions from "../reducers/AppReducer";
 import {debounce} from "lodash";
 import "../css/RepoView.css";
 import '@fortawesome/fontawesome-free/js/fontawesome'
@@ -26,7 +26,7 @@ class HeaderComponent extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    orgname: state.orgname
+    orgname: state.appReducer.orgname
 });
 
 const mapDispatchToProps = {

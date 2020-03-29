@@ -18,7 +18,6 @@ class RepoTable extends Component{
         return data.slice(start, end);
     };
     onChange = (pageNumber) => {
-        console.log('Page: ', pageNumber);
         this.setState({currentPage: pageNumber});
     };
     render(){
@@ -28,13 +27,15 @@ class RepoTable extends Component{
         return(<div>
             <table>
                 <thead>
+                <tr>
                 {columns.map((value) =>{
                     return <th>{value.title}</th>
                 })}
+                </tr>
                 </thead>
                 <tbody>
-                {currentData.map((value) =>{
-                    return <tr>
+                {currentData.map((value, index) =>{
+                    return <tr key={index}>
                         <td>{value.name}</td>
                         <td>{value.forks}</td>
                         <td>{value.language}</td>

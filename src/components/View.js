@@ -21,7 +21,7 @@ class View extends Component{
 }
 
 const mapStateToProps = (state) => ({
-    component: state.component
+    component: state.appReducer.component
 });
 
 export default connect(mapStateToProps)(View);

@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import * as actions from "../reducers/displayReducer";
+import * as actions from "../reducers/AppReducer";
 import {Table, Spin} from "antd";
 import "../css/CommitsView.css";
 import {formatDateAndTime} from "../helpers/utils";
@@ -95,8 +95,8 @@ class CommitsView extends Component{
 }
 
 const mapStateToProps = (state) => ({
-    orgname: state.orgname,
-    repoSelected: state.repoSelected
+    orgname: state.appReducer.orgname,
+    repoSelected: state.appReducer.repoSelected
 });
 
 const mapDispatchToProps = {

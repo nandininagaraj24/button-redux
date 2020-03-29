@@ -1,7 +1,8 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import EmptyState from "./EmptyState";
-import * as actions from "../reducers/displayReducer";
+import * as actionsApp from "../reducers/AppReducer";
+import * as actionsRepo from "../reducers/RepoTableReducer";
 import {Spin} from "antd";
 import "../css/RepoTable.css";
 import RepoTable from "./RepoTable";
@@ -192,12 +193,13 @@ class TableView extends Component{
 }
 
 export const mapStateToProps = (state) =>({
-    orderCategory: state.orderCategory,
-    sortDirection: state.sortDirection
+    orderCategory: state.repoReducer.orderCategory,
+    sortDirection: state.repoReducer.sortDirection
 });
 
 const mapDispatchToProps = {
-    ...actions
+    ...actionsApp,
+    ...actionsRepo
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TableView);

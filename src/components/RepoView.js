@@ -17,7 +17,7 @@ class RepoView extends Component{
 }
 
 export const mapStateToProps = (state) =>({
-    orgname: state.orgname
+    orgname: state.appReducer.orgname
 });
 
 export default connect(mapStateToProps)(RepoView);

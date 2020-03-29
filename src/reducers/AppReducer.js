@@ -1,10 +1,3 @@
-export const changeText = () => {
-	return {
-		type: "CHANGE_TEXT",
-		displayval: "CHANGE HAPPENED!!!"
-	}
-}
-
 export const setInputVal = (value) => {
     return {
         type: "SET_INPUT_VAL",
@@ -20,7 +13,7 @@ export const changeViewComponent = (component, repoSelected) => {
     }
 }
 
-export const setOrderCategory = (orderCategory) => {
+/*export const setOrderCategory = (orderCategory) => {
     return {
         type: "SET_ORDER_CATEGORY",
         orderCategory
@@ -32,23 +25,18 @@ export const setSortDirection = (sortDirection) => {
         type: "SET_SORT_DIRECTION",
         sortDirection
     }
-}
+}*/
 
 const initialState = {
-	displayval: "",
     orgname: '',
     component: "repo",
 	repoSelected: "",
-    orderCategory: "name",
-    sortDirection: "asc"
+   // orderCategory: "name",
+    //sortDirection: "asc"
 }
 
-export const displayred = (state = initialState, action) => {
+export const appReducer = (state = initialState, action) => {
 	switch(action.type){
-		case "CHANGE_TEXT": return {
-			...state,
-			displayval: action.displayval
-		}
         case "SET_INPUT_VAL": return {
             ...state,
             orgname: action.orgname
@@ -58,17 +46,17 @@ export const displayred = (state = initialState, action) => {
             component: action.component,
             repoSelected: action.repoSelected
         }
-        case "SET_ORDER_CATEGORY": return {
+        /*case "SET_ORDER_CATEGORY": return {
             ...state,
             orderCategory: action.orderCategory
         }
         case "SET_SORT_DIRECTION": return {
             ...state,
             sortDirection: action.sortDirection
-        }
+        }*/
 		default: break;
 	}
 	return state;
 }
 
-export default displayred;
+export default appReducer;
