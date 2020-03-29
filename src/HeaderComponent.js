@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import {connect} from "react-redux";
-//import {setOrgName} from "../reducers/org";
 import * as actions from "./reducers/displayReducer";
 import {debounce} from "lodash";
 import "./css/RepoView.css";
@@ -19,7 +18,8 @@ class HeaderComponent extends Component {
         return(
             <div className="search">
                 <span className="fa fa-search"/>
-                <input className="header-input" placeholder="Search Organization Name" defaultValue={this.props.orgname}  onChange={e => {this.setSearchTerm(e.target.value)}}/>
+                <input className="header-input" placeholder="Search Organization Name" defaultValue={this.props.orgname}
+                       onChange={e => {this.setSearchTerm(e.target.value)}}/>
             </div>
         )
     }
@@ -27,7 +27,7 @@ class HeaderComponent extends Component {
 
 const mapStateToProps = (state) => ({
     orgname: state.orgname
-})
+});
 
 const mapDispatchToProps = {
     ...actions

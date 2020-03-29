@@ -22,6 +22,6 @@ class View extends Component{
 
 const mapStateToProps = (state) => ({
     component: state.component
-})
+});
 
 export default connect(mapStateToProps)(View);

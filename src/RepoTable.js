@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Table, Spin, Pagination} from "antd";
+import {Pagination} from "antd";
 
 class RepoTable extends Component{
     constructor(props){
@@ -10,14 +10,12 @@ class RepoTable extends Component{
         };
     }
     getCurrentPageData = () => {
-        // 1 - 10 11 - 120
         const {currentPage, pageSize} = this.state;
-        let {tableData, columns} = this.props;
+        let {tableData} = this.props;
         const start = ((currentPage - 1) * pageSize);
         const end = currentPage * pageSize;
         const data = [...tableData];
         return data.slice(start, end);
-       // return tableData.subarray(start, end);
     };
     onChange = (pageNumber) => {
         console.log('Page: ', pageNumber);

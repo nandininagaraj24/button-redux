@@ -2,8 +2,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import EmptyState from "./EmptyState";
 import * as actions from "./reducers/displayReducer";
-import {Table, Spin, Pagination} from "antd";
-import {data} from "./mockData/data";
+import {Spin} from "antd";
 import "./css/RepoTable.css";
 import RepoTable from "./RepoTable";
 import GetTableControls from "./RepoTableControls";
@@ -124,26 +123,6 @@ class TableView extends Component{
         const {orderCategory} = this.props;
         this.setState({loading: true});
 
-        /*let tableresponse = [];
-        data.forEach((value, index) =>{
-            tableresponse.push({
-                key: index,
-                name: value.name,
-                forks: value.forks,
-                language: value.language,
-                openissues: value.open_issues,
-                watchers: value.watchers,
-                createdat: this.formatDateAntTime(new Date(value.created_at)),
-                updatedat: this.formatDateAntTime(new Date(value.updated_at)),
-                viewcommits: "View Commits"
-            })
-        });
-        const ordereddata = this.reorderData(sortDirection, orderCategory, tableresponse);
-        this.setState({
-            tableData: ordereddata,
-            noinfo: true,
-            loading: false
-        })*/
         fetch(`https://api.github.com/orgs/${orgname}/repos`)
             .then(res => res.json())
             .then((response) => {
@@ -217,7 +196,6 @@ export const mapStateToProps = (state) =>({
     sortDirection: state.sortDirection
 });
 
-//export default TableView;
 const mapDispatchToProps = {
     ...actions
 };

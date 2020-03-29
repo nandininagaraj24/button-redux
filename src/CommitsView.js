@@ -1,6 +1,4 @@
 import React, {Component} from "react";
-import HeaderComponent from "./HeaderComponent";
-import GetTableView from "./CommitsTable";
 import {connect} from "react-redux";
 import * as actions from "./reducers/displayReducer";
 import {Table, Spin} from "antd";
@@ -99,7 +97,7 @@ class CommitsView extends Component{
 const mapStateToProps = (state) => ({
     orgname: state.orgname,
     repoSelected: state.repoSelected
-})
+});
 
 const mapDispatchToProps = {
     ...actions

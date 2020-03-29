@@ -6,18 +6,10 @@ import "./css/RepoView.css";
 
 class RepoView extends Component{
 
-    state = {
-        orgname: ""
-    };
-
-    setOrgNameInput = (orgname) => {
-        this.setState({orgname});
-    };
-
     render() {
         return(
             <div className="repo-view">
-                <HeaderComponent setOrgNameInput={this.setOrgNameInput} orgname={this.state.orgname}/>
+                <HeaderComponent/>
                 <TableView orgname={this.props.orgname} setView={this.props.setView}/>
             </div>
         )
