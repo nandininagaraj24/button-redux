@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import * as actions from "./reducers/displayReducer";
 import {Table, Spin} from "antd";
 import "./css/CommitsView.css";
-import commits from "./mockData/commits";
+import {formatDateAndTime} from "./helpers/utils";
 
 class CommitsView extends Component{
 
@@ -13,6 +13,10 @@ class CommitsView extends Component{
         commitData: [],
         dataKeys: ["name", "email", "date"],
         columns: [ {
+            title: 'SHA',
+            dataIndex: 'sha',
+            key: 'sha'
+        },{
             title: 'Name',
             dataIndex: 'name',
             key: 'name'
@@ -31,14 +35,8 @@ class CommitsView extends Component{
     componentWillMount(){
         this.fetchCommitInfo();
     }
-
     fetchCommitInfo = () => {
         const {orgname, repoSelected} = this.props;
-        /*this.setState({
-            commitData: commits,
-            noinfo: false,
-            loading: false
-        })*/
         this.setState({loading: true});
         fetch(`https://api.github.com/repos/${orgname}/${repoSelected}/commits`)
             .then(res => res.json())
@@ -56,8 +54,14 @@ class CommitsView extends Component{
                             key: index,
                             name: value.commit.committer.name,
                             email: value.commit.committer.email,
-                            date: value.commit.committer.date,
+                            date: formatDateAndTime(value.commit.committer.date),
+                            sha: value.sha
                         }
+                    });
+                    processedResponse.sort((a, b) =>{
+                        const valA = new Date(a.date);
+                        const valB = new Date(b.date);
+                        return (valB !== valA ? valB < valA ? -1 : 1 : 0);
                     });
                     this.setState({
                         commitData: processedResponse,
@@ -76,7 +80,7 @@ class CommitsView extends Component{
     };
 
     render() {
-        const {columns, dataKeys, commitData} = this.state;
+        const {columns, commitData} = this.state;
         const {repoSelected} = this.props;
         return(
             <div className="commits-view">
@@ -86,7 +90,7 @@ class CommitsView extends Component{
                     <div>Commits for {repoSelected}</div>
                 </div>
                 {this.state.loading? <Spin />:
-                    <Table columns={columns} dataSource={commitData}/>}
+                    <Table columns={columns} key={"key"} dataSource={commitData}/>}
             </div>
         )
     }

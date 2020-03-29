@@ -6,6 +6,7 @@ import {Table, Spin, Pagination} from "antd";
 import {data} from "./mockData/data";
 import "./css/RepoTable.css";
 import RepoTable from "./RepoTable";
+import GetTableControls from "./RepoTableControls";
 
 class TableView extends Component{
 
@@ -53,7 +54,9 @@ class TableView extends Component{
     };
 
     componentWillMount(){
-        this.fetchData(this.props.orgname, this.props.sortDirection);
+        if(this.props.orgname && this.props.orgname.length > 0) {
+            this.fetchData(this.props.orgname, this.props.sortDirection);
+        }
     }
 
     componentWillReceiveProps(nextProps){
@@ -199,8 +202,10 @@ class TableView extends Component{
         const {orgname} = this.props;
         return(
             <div className="repo-table" onClick={this.tableClick}>
-                {orgname.length >= 0? this.state.loading? <Spin />:
-                    <RepoTable tableData={tableData} columns={columns}/>:null}
+                {orgname.length > 0? this.state.loading? <Spin />:
+                    <div>
+                        <GetTableControls {...this.props}/>
+                        <RepoTable tableData={tableData} columns={columns}/></div>:null}
                 {orgname.length === 0? <EmptyState/>:null}
             </div>
         )
