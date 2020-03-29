@@ -12,3 +12,6 @@
 .commits-view{
     padding: 30px;
 }
+.ant-spin.ant-spin-spinning {
+    padding: 10% 0% 0% 35%;
+}

@@ -20,3 +20,7 @@ th{
 tr:nth-child(even) {
     background-color: #f9f9f9;
 }
+
+.ant-spin.ant-spin-spinning {
+    padding: 10% 0% 0% 35%;
+}

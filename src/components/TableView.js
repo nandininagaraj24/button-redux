@@ -6,6 +6,7 @@ import * as actionsRepo from "../reducers/RepoTableReducer";
 import {Spin} from "antd";
 import "../css/RepoTable.css";
 import RepoTable from "./RepoTable";
+import {repoTableColumns} from "../config/repoTableConfig";
 import GetTableControls from "./RepoTableControls";
 
 class TableView extends Component{
@@ -13,43 +14,7 @@ class TableView extends Component{
     state = {
         tableData: [],
         noinfo: false,
-        columns: [ {
-            title: 'Name',
-            dataIndex: 'name',
-            key: 'name'
-        }, {
-            title: 'Forks',
-            dataIndex: 'forks',
-            key: 'forks'
-        }, {
-            title: 'Language',
-            dataIndex: 'language',
-            key: 'language'
-        }, {
-            title: 'Open Issues',
-            dataIndex: 'openissues',
-            key: 'openissues'
-        }, {
-            title: 'Watchers',
-            dataIndex: 'watchers',
-            key: 'watchers'
-        }, {
-            title: 'Created At',
-            dataIndex: 'createdat',
-            key: 'createdat',
-            render: text => {
-                return new Date(text)
-            }
-        }, {
-            title: 'Updated At',
-            dataIndex: 'updatedat',
-            key: 'updatedat'
-        }, {
-            title: '',
-            dataIndex: 'viewcommits',
-            key: 'viewcommits',
-            render: text => <a>{text}</a>
-        }],
+        columns: repoTableColumns,
         loading: false
     };
 
