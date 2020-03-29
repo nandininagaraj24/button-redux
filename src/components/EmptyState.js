@@ -10,8 +10,11 @@ const EmptyState = () => {
     return (
         <div className="empty-state">
             <img src={search} alt="Logo" height="300" width="600"/>
-            <div className="empty-state-text"> NO RESULTS </div>
-            <div className="empty-state-text">Search for the name of an organization to view repositories and commits on GitHub <i className="fab fa-github"/></div>
+            <div className="empty-state-text header"> NO RESULTS </div>
+            <div className="empty-state-text help-text">
+                Search for the name of an organization to view repositories and commits on GitHub
+                <i className="fab fa-github"/>
+            </div>
         </div>
     )
 };
