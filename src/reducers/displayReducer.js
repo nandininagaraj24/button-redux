@@ -22,7 +22,7 @@ export const changeViewComponent = (component, repoSelected) => {
 
 const initialState = {
 	displayval: "",
-    orgname: 'Netflix',
+    orgname: '',
     component: "repo",
 	repoSelected: ""
 }

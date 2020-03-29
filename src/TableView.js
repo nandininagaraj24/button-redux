@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
+import EmptyState from "./EmptyState";
 import * as actions from "./reducers/displayReducer";
 import {Table, Spin} from "antd";
 
@@ -149,7 +150,7 @@ class TableView extends Component{
             <div className="repo-table" onClick={this.tableClick}>
                 {orgname.length !== 0? this.state.loading? <Spin />:
                 <Table columns={columns} dataSource={tableData} onChange={this.handleChange}/>: null}
-                {orgname.length === 0? <p>Pick an organization to view more details</p>:null}
+                {orgname.length === 0? <EmptyState/>:null}
             </div>
         )
     }
