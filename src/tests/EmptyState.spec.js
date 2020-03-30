@@ -6,7 +6,7 @@ describe('EmptyState', () => {
 
     it('EmptyState should be rendered,', () => {
         let component = mount(<EmptyState/>);
-        expect(component.find('.empty-state-text').isEmpty()).toEqual(false);
+        expect(component.find('.empty-state-text').exists()).toEqual(true);
     });
     it('EmptyState NO RESULTS text should be rendered,', () => {
         let component = mount(<EmptyState/>);
