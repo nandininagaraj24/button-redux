@@ -18,6 +18,10 @@ class TableView extends Component{
         loading: false
     };
 
+    checkIfPatternMatchesRepoName = (value) => {
+        return /^([a-zA-Z0-9-_ ]{0,150})$/.test(value);
+    };
+
     componentWillMount(){
         if(this.props.orgname && this.props.orgname.length > 0) {
             this.fetchData(this.props.orgname, this.props.sortDirection);
@@ -88,48 +92,60 @@ class TableView extends Component{
     fetchData = (orgname, sortDirection) => {
         const {orderCategory} = this.props;
         this.setState({loading: true});
+        if(this.checkIfPatternMatchesRepoName(orgname)) {
+            fetch(`https://api.github.com/orgs/${orgname}/repos`)
+                .then(res => res.json())
+                .then((response) => {
+                    if (response.message === "Not Found") {
+                        /*this.setState({
+                            tableData: [],
+                            noinfo: true,
+                            loading: false
+                        })*/
+                        this.setTableParams([], true, false);
+                    }
+                    else {
+                        let tableresponse = [];
+                        response.forEach((value, index) => {
+                            tableresponse.push({
+                                key: index,
+                                name: value.name,
+                                forks: value.forks,
+                                language: value.language,
+                                openissues: value.open_issues,
+                                watchers: value.watchers,
+                                createdat: this.formatDateAntTime(new Date(value.created_at)),
+                                updatedat: this.formatDateAntTime(new Date(value.updated_at)),
+                                viewcommits: "View Commits"
+                            })
+                        });
 
-        fetch(`https://api.github.com/orgs/${orgname}/repos`)
-            .then(res => res.json())
-            .then((response) => {
-                if(response.message === "Not Found"){
-                    this.setState({
+                        const ordereddata = this.reorderData(sortDirection, orderCategory, tableresponse);
+                        /*this.setState({
+                            tableData: ordereddata,
+                            noinfo: false,
+                            loading: false
+                        })*/
+                        this.setTableParams(ordereddata, false, false);
+                    }
+                })
+                .catch(() => {
+                    /*this.setState({
                         tableData: [],
                         noinfo: true,
                         loading: false
-                    })
-                }
-                else {
-                    let tableresponse = [];
-                    response.forEach((value, index) =>{
-                        tableresponse.push({
-                            key: index,
-                            name: value.name,
-                            forks: value.forks,
-                            language: value.language,
-                            openissues: value.open_issues,
-                            watchers: value.watchers,
-                            createdat:this.formatDateAntTime(new Date(value.created_at)),
-                            updatedat: this.formatDateAntTime(new Date(value.updated_at)),
-                            viewcommits: "View Commits"
-                        })
-                    });
-
-                    const ordereddata = this.reorderData(sortDirection, orderCategory, tableresponse);
-                    this.setState({
-                        tableData: ordereddata,
-                        noinfo: false,
-                        loading: false
-                    })
-                }
-            })
-            .catch(() =>{
-                this.setState({
-                    tableData: [],
-                    noinfo: true,
-                    loading: false
+                    })*/
+                    this.setTableParams([], true, false);
                 })
-            })
+        }
+        else{
+            /*this.setState({
+                tableData: [],
+                noinfo: true,
+                loading: false
+            })*/
+            this.setTableParams([], true, false);
+        }
     };
 
     tableClick = (e) => {
