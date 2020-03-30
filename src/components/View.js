@@ -12,7 +12,7 @@ class View extends Component{
     getViewComponent = (attribute) => {
         switch(attribute){
             case "repo": return <RepoView setView={this.setView}/>;
-            case "commits": return <CommitsView setView={this.setView}/>
+            case "commits": return <CommitsView setView={this.setView}/>;
             default: return null;
         }
     };

@@ -21,12 +21,6 @@ class TableView extends Component{
         columns: repoTableColumns,
         loading: false
     };
-    /* Input validation pattern match so that
-        there are no scripts of wild card patterns passed by the user
-     */
-    checkIfPatternMatchesRepoName = (value) => {
-        return /^([a-zA-Z0-9-_ ]{0,150})$/.test(value);
-    };
 
     componentWillMount(){
         if(this.props.orgname && this.props.orgname.length > 0) {
@@ -98,40 +92,35 @@ class TableView extends Component{
     fetchData = (orgname, sortDirection) => {
         const {orderCategory} = this.props;
         this.setState({loading: true});
-        if(this.checkIfPatternMatchesRepoName(orgname)) {
-            fetch(`https://api.github.com/orgs/${orgname}/repos`)
-                .then(res => res.json())
-                .then((response) => {
-                    if (response.message === "Not Found") {
-                        this.setTableParams([], true, false);
-                    }
-                    else {
-                        let tableresponse = [];
-                        response.forEach((value, index) => {
-                            tableresponse.push({
-                                key: index,
-                                name: value.name,
-                                forks: value.forks,
-                                language: value.language,
-                                openissues: value.open_issues,
-                                watchers: value.watchers,
-                                createdat: this.formatDateAntTime(new Date(value.created_at)),
-                                updatedat: this.formatDateAntTime(new Date(value.updated_at)),
-                                viewcommits: "View Commits"
-                            })
-                        });
-
-                        const ordereddata = this.reorderData(sortDirection, orderCategory, tableresponse);
-                        this.setTableParams(ordereddata, false, false);
-                    }
-                })
-                .catch(() => {
+        fetch(`https://api.github.com/orgs/${orgname}/repos`)
+            .then(res => res.json())
+            .then((response) => {
+                if (response.message === "Not Found") {
                     this.setTableParams([], true, false);
-                })
-        }
-        else{
-            this.setTableParams([], true, false);
-        }
+                }
+                else {
+                    let tableresponse = [];
+                    response.forEach((value, index) => {
+                        tableresponse.push({
+                            key: index,
+                            name: value.name,
+                            forks: value.forks,
+                            language: value.language,
+                            openissues: value.open_issues,
+                            watchers: value.watchers,
+                            createdat: this.formatDateAntTime(new Date(value.created_at)),
+                            updatedat: this.formatDateAntTime(new Date(value.updated_at)),
+                            viewcommits: "View Commits"
+                        })
+                    });
+
+                    const ordereddata = this.reorderData(sortDirection, orderCategory, tableresponse);
+                    this.setTableParams(ordereddata, false, false);
+                }
+            })
+            .catch(() => {
+                this.setTableParams([], true, false);
+            })
     };
 
     /* Using Event bubbling to hancle click events at the parent level rather
@@ -153,12 +142,11 @@ class TableView extends Component{
         const {orgname, orderCategory, sortDirection} = this.props;
         return(
             <div className="repo-table" onClick={this.tableClick}>
-                {orgname.length > 0? this.state.loading? <Spin />:
+                {this.state.loading? <Spin />:
                     <div>
                         <GetTableControls {...this.props}/>
                         <RepoTable tableData={tableData} columns={columns}
-                                   orderCategory={orderCategory} sortDirection={sortDirection}/></div>:null}
-                {orgname.length === 0? <EmptyState/>:null}
+                                   orderCategory={orderCategory} sortDirection={sortDirection}/></div>}
             </div>
         )
     }

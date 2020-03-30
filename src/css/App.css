@@ -1,5 +1,5 @@
 @import '~antd/dist/antd.css';
 
-.App {
-
+.input-error{
+    color: #ef0707;
 }

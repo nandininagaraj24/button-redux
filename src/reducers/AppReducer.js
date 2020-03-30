@@ -1,7 +1,8 @@
-export const setInputVal = (value) => {
+export const setInputVal = (orgname,isPatternMatched ) => {
     return {
         type: "SET_INPUT_VAL",
-        orgname: value
+        orgname,
+        isPatternMatched
     }
 };
 
@@ -16,14 +17,16 @@ export const changeViewComponent = (component, repoSelected) => {
 const initialState = {
     orgname: '',
     component: "repo",
-	repoSelected: ""
+	repoSelected: "",
+    isPatternMatched: true
 };
 
 export const appReducer = (state = initialState, action) => {
 	switch(action.type){
         case "SET_INPUT_VAL": return {
             ...state,
-            orgname: action.orgname
+            orgname: action.orgname,
+            isPatternMatched: action.isPatternMatched
         };
 		case "CHANGE_VIEW_COMPONENT": return {
             ...state,
