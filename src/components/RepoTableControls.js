@@ -19,7 +19,7 @@ const GetTableControls = (props) => {
         <div>View By</div>
         <select onChange={setCategory}>
             <option value="name">Name</option>
-            <option value="forks">Forks</option>
+            <option value="forks">Popularity</option>
             <option value="language">Language</option>
             <option value="openissues">Open Issues</option>
             <option value="updatedat">Updated At</option>

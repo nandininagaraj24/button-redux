@@ -4,14 +4,14 @@ import * as actions from "../reducers/AppReducer";
 import {Table, Spin} from "antd";
 import "../css/CommitsView.css";
 import {formatDateAndTime} from "../helpers/utils";
+import BreadCrumbs from "./Breadcrumbs";
 
 
-/* This is the container for the view that
+/* This is the container for the table that
     shows details about the commits in a
     repository selected by the user
 
-    The breadcrumbs shown at the top left corner
-    help the user in navigating across screens
+    It also renders the Breadcrumbs component
  */
 class CommitsView extends Component{
 
@@ -85,11 +85,7 @@ class CommitsView extends Component{
         const {repoSelected} = this.props;
         return(
             <div className="commits-view">
-                <div className="view-navigator" style={{display: "flex"}}>
-                    <div className="active" onClick={ () => this.props.changeViewComponent("repo", "")}>Back to Repositories</div>
-                    <div> > </div>
-                    <div>Commits for {repoSelected}</div>
-                </div>
+                <BreadCrumbs {...this.props}/>
                 {this.state.loading? <Spin />:
                     <Table columns={columns} key={"key"} dataSource={commitData}/>}
             </div>

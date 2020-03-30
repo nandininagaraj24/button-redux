@@ -50,8 +50,7 @@ There in a breadcrumb navigator at the top of the screen which helps the user to
 
 #Unit tests are written using Jest
 
-#More manual testing
-Functional testing
+#Performance Improvement
 
 On search of an Organization, the API is not called every key press. There is a delay to reduce the number of calls
 Once the API is called, until the reponse is received the user is indicated about the ongoing action with a spinner
