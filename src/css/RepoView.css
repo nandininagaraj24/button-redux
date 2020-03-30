@@ -13,6 +13,29 @@
     margin: 0px 10px 20px 0px;
     float: right;
 }
+.direction-controls{
+    font-size: 30px;
+}
+.direction-active{
+    color: blue;
+}
+.table-controls > div {
+    line-height: 2.5em;
+    padding-right: 10px;
+}
+.table-controls > select:nth-of-type(1){
+    margin-right: 10px;
+}
+.repo-table-container ul.ant-pagination {
+    float: right;
+    padding-top: 20px;
+}
+tr:hover {
+    background: #fcfcfc;
+}
+table{
+    font-size: 15px;
+}
 
 .search {
     position: relative;

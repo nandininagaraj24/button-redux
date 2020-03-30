@@ -144,13 +144,14 @@ class TableView extends Component{
 
     render(){
         let {tableData, columns} = this.state;
-        const {orgname} = this.props;
+        const {orgname, orderCategory, sortDirection} = this.props;
         return(
             <div className="repo-table" onClick={this.tableClick}>
                 {orgname.length > 0? this.state.loading? <Spin />:
                     <div>
                         <GetTableControls {...this.props}/>
-                        <RepoTable tableData={tableData} columns={columns}/></div>:null}
+                        <RepoTable tableData={tableData} columns={columns}
+                                   orderCategory={orderCategory} sortDirection={sortDirection}/></div>:null}
                 {orgname.length === 0? <EmptyState/>:null}
             </div>
         )

@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest --config src/jest.config.js",
     "build": "webpack --mode development",
-    "start": "webpack --mode development && webpak-dev-server"
+    "installdep": "npm i",
+    "start": "webpack --mode development && webpack-dev-server"
   },
   "author": "",
   "license": "ISC",

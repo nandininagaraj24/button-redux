@@ -9,6 +9,13 @@ class RepoTable extends Component{
             pageSize: 15
         };
     }
+    componentWillReceiveProps(nextProps){
+        const {sortDirection, orderCategory} = this.props;
+        if(sortDirection !== nextProps.sortDirection ||
+            orderCategory !== nextProps.orderCategory){
+            this.setState({currentPage: 1})
+        }
+    }
     getCurrentPageData = () => {
         const {currentPage, pageSize} = this.state;
         let {tableData} = this.props;
@@ -24,7 +31,7 @@ class RepoTable extends Component{
         let {tableData, columns} = this.props;
         const {pageSize} = this.state;
         let currentData = this.getCurrentPageData();
-        return(<div>
+        return(<div className="repo-table-container">
             <table>
                 <thead>
                 <tr>
@@ -48,7 +55,8 @@ class RepoTable extends Component{
                 })}
                 </tbody>
             </table>
-            <Pagination defaultCurrent={1} total={tableData.length} pageSize={pageSize} onChange={this.onChange} />
+            <Pagination defaultCurrent={1} total={tableData.length} current={this.state.currentPage}
+                        pageSize={pageSize} onChange={this.onChange} />
         </div>)
     }
 }
