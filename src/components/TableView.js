@@ -9,6 +9,10 @@ import RepoTable from "./RepoTable";
 import {repoTableColumns} from "../config/repoTableConfig";
 import GetTableControls from "./RepoTableControls";
 
+/* The table view is the container component for the
+    repository table and its control components
+
+ */
 class TableView extends Component{
 
     state = {
@@ -17,7 +21,9 @@ class TableView extends Component{
         columns: repoTableColumns,
         loading: false
     };
-
+    /* Input validation pattern match so that
+        there are no scripts of wild card patterns passed by the user
+     */
     checkIfPatternMatchesRepoName = (value) => {
         return /^([a-zA-Z0-9-_ ]{0,150})$/.test(value);
     };
@@ -97,11 +103,6 @@ class TableView extends Component{
                 .then(res => res.json())
                 .then((response) => {
                     if (response.message === "Not Found") {
-                        /*this.setState({
-                            tableData: [],
-                            noinfo: true,
-                            loading: false
-                        })*/
                         this.setTableParams([], true, false);
                     }
                     else {
@@ -121,33 +122,22 @@ class TableView extends Component{
                         });
 
                         const ordereddata = this.reorderData(sortDirection, orderCategory, tableresponse);
-                        /*this.setState({
-                            tableData: ordereddata,
-                            noinfo: false,
-                            loading: false
-                        })*/
                         this.setTableParams(ordereddata, false, false);
                     }
                 })
                 .catch(() => {
-                    /*this.setState({
-                        tableData: [],
-                        noinfo: true,
-                        loading: false
-                    })*/
                     this.setTableParams([], true, false);
                 })
         }
         else{
-            /*this.setState({
-                tableData: [],
-                noinfo: true,
-                loading: false
-            })*/
             this.setTableParams([], true, false);
         }
     };
 
+    /* Using Event bubbling to hancle click events at the parent level rather
+        than attaching to every child
+        This method changes the view to fetch and show the commits
+     */
     tableClick = (e) => {
         if(e.target.tagName === "A" && !e.target.parentElement.classList.contains("ant-pagination-item") &&
             !e.target.parentElement.classList.contains("ant-pagination-next") &&

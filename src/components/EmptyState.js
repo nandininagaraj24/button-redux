@@ -6,6 +6,9 @@ import '@fortawesome/fontawesome-free/js/solid'
 import '@fortawesome/fontawesome-free/js/regular'
 import '@fortawesome/fontawesome-free/js/brands'
 
+/* Returns the empty state of the application when the
+    user has not entered a search criteria
+ */
 const EmptyState = () => {
     return (
         <div className="empty-state">

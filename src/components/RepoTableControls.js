@@ -1,5 +1,10 @@
 import React from "react";
 
+/* Renders the action controls for the table
+    which allows the user to toggle the criteria of
+    data ordering
+    and the direction of order - ascending/ descending
+ */
 const GetTableControls = (props) => {
 
     const setCategory = (e) => {

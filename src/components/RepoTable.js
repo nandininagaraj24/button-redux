@@ -1,6 +1,9 @@
 import React, {Component} from "react";
 import {Pagination} from "antd";
 
+/* Renders the table that lists all the repositories within
+    an organization ordered by the name
+ */
 class RepoTable extends Component{
     constructor(props){
         super(props);

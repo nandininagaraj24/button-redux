@@ -4,6 +4,10 @@ import TableView from "./TableView";
 import {connect} from "react-redux";
 import "../css/RepoView.css";
 
+/* Container component to display the
+    header controls for the table
+    and the table listing the repositories
+ */
 class RepoView extends Component{
 
     render() {

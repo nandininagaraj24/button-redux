@@ -8,8 +8,16 @@ import '@fortawesome/fontawesome-free/js/solid'
 import '@fortawesome/fontawesome-free/js/regular'
 import '@fortawesome/fontawesome-free/js/brands';
 
+/*
+    This is a controlled component which
+     renders the input bar where the user
+     searches for an organization
+ */
 class HeaderComponent extends Component {
 
+    /* Adding delay to call the API's to prevent
+        calls on every single key press
+     */
     setSearchTerm = debounce(searchTerm => {
         this.props.setInputVal(searchTerm)
     }, 1000);

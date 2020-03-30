@@ -5,6 +5,14 @@ import {Table, Spin} from "antd";
 import "../css/CommitsView.css";
 import {formatDateAndTime} from "../helpers/utils";
 
+
+/* This is the container for the view that
+    shows details about the commits in a
+    repository selected by the user
+
+    The breadcrumbs shown at the top left corner
+    help the user in navigating across screens
+ */
 class CommitsView extends Component{
 
     state={
@@ -33,6 +41,13 @@ class CommitsView extends Component{
     componentWillMount(){
         this.fetchCommitInfo();
     }
+
+    setCommitsTableParams = (commitData, noinfo, loading ) => {
+        this.setState({commitData, noinfo, loading});
+    };
+
+    /* Github API call that gets the list of all commits within the repo*/
+
     fetchCommitInfo = () => {
         const {orgname, repoSelected} = this.props;
         this.setState({loading: true});
@@ -40,11 +55,7 @@ class CommitsView extends Component{
             .then(res => res.json())
             .then((response) => {
                 if(response.message === "Not Found"){
-                    this.setState({
-                        commitData: [],
-                        noinfo: true,
-                        loading: false
-                    })
+                    this.setCommitsTableParams([], true, false);
                 }
                 else {
                     let processedResponse = response.map((value,  index) =>{
@@ -61,19 +72,11 @@ class CommitsView extends Component{
                         const valB = new Date(b.date);
                         return (valB !== valA ? valB < valA ? -1 : 1 : 0);
                     });
-                    this.setState({
-                        commitData: processedResponse,
-                        noinfo: false,
-                        loading: false
-                    })
+                    this.setCommitsTableParams(processedResponse, false, false);
                 }
             })
             .catch(() =>{
-                this.setState({
-                    commitData: [],
-                    noinfo: true,
-                    loading: false
-                })
+                this.setCommitsTableParams([], true, false);
             })
     };
 

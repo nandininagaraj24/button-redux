@@ -1,4 +1,4 @@
-#An application to view repositories in an organization on Github and its associated commits.
+#This is a React-Redux application to view repositories of an organization and its associated commits on Github.
 
 #Setup
 Installing dependencies standing at the root folder:
@@ -11,6 +11,9 @@ The application deploys on port 3100
 
 #To view the application on a browser:
 http://localhost:3100/
+
+The port can be changed in the file webpack.config.js. Please replace the value for devServer -> port to your desired port number
+and go to that path/port on the browser.
 
 #To run Unit Tests using Jest:
 npm run test
@@ -44,7 +47,10 @@ The response is ordered by Commit Date and Time in descending order.
 There in a breadcrumb navigator at the top of the screen which helps the user to go back to the previous screen.
 
 
-#Manual testing
+
+#Unit tests are written using Jest
+
+#More manual testing
 Functional testing
 
 On search of an Organization, the API is not called every key press. There is a delay to reduce the number of calls
@@ -56,5 +62,7 @@ There is a regex pattern matching the entered input so that the user does not en
 
 Error handling:
 When the name of the repository does not exist, the API throws an error which is caught and handled appropriately. The table is shown an empty data set
+
+
 
 
